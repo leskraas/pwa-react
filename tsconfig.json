@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "lib": ["es2015", "dom", "dom.iterable", "esnext"],
+    "noImplicitAny": true,
+    "module": "esnext",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "paths": {
+      "src/*": ["src/*"]
+    },
+    "typeRoots": ["./node_modules/@types"],
+    "baseUrl": ".",
+    "moduleResolution": "node"
+  },
+  "include": ["src", "types"]
+}
