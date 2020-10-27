@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="description" content="PWA React Example"/>
+        <meta name="theme-color" content="#000000" />
         <link rel="icon" type="image/png" href="/icon-192.png" />
         <link rel="manifest" href="/manifest.json" crossorigin="use-credentials"/>
         <link rel="apple-touch-icon" type="image/png" href="/apple-touch-icons-180.png" />
@@ -10,7 +11,15 @@
         <title>PWA React</title>
     </head>
     <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
     </body>
 </html>
 

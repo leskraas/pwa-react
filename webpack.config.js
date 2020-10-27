@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = env => {
     const isEnvDevelopment = env === 'development';
@@ -43,6 +44,21 @@ module.exports = env => {
             new HtmlWebpackPlugin({
                 template: './public/index.html',
             }),
+            new WorkboxPlugin.GenerateSW({
+                cacheId: 'pwa-react',
+                exclude: [/\.(?:png|jpg|jpeg|svg)$/],
+                skipWaiting: true,
+                runtimeCaching: [{
+                    urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+                    handler: 'CacheFirst',
+                    options: {
+                        cacheName: 'images',
+                        expiration: {
+                            maxEntries: 10,
+                        },
+                    },
+                }],
+            })
         ],
         output: {
             filename: '[name].bundle.[contenthash].js',
